@@ -67,12 +67,6 @@ async function run() {
       const result = await ordersCollection.insertOne(order)
       res.json(result)
     })
-    // Get Api Gell All orders
-    app.get("/orders", async (req, res) => {
-      const cursor = ordersCollection.find({})
-      const result = await cursor.toArray();
-      res.send(result)
-    })
 
     // Get Email with all orders
     app.get('/orders', async (req, res) => {
@@ -82,6 +76,14 @@ async function run() {
       const order = await cursor.toArray()
       res.json(order)
     })
+
+    // Get Api Gell All orders
+    app.get("/orders", async (req, res) => {
+      const cursor = ordersCollection.find({})
+      const result = await cursor.toArray();
+      res.send(result)
+    })
+    
     // Deleted Order
     app.delete('/orders/:id', async (req, res) => {
       const id = req.params.id;
