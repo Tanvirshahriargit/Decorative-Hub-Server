@@ -52,6 +52,14 @@ async function run() {
       res.json(result)
     })
 
+    // Deleted Products
+    app.delete('/products/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) }
+      const result = await productsCollection.deleteOne(query)
+      res.json(result)
+    })
+
     // post order
     app.post('/orders', async (req, res) => {
       const order = req.body;
@@ -64,7 +72,7 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result)
     })
-    
+
     // Get Email with all orders
     app.get('/orders', async (req, res) => {
       const email = req.query.email;
