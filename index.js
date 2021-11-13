@@ -29,6 +29,7 @@ async function run() {
     const productsCollection = database.collection("products");
     const ordersCollection = database.collection("orders");
     const usersCollection = database.collection("users");
+    const reviewCollection = database.collection("review");
     
 
     // Get Api Gell Single Services
@@ -128,6 +129,12 @@ async function run() {
       const result = await usersCollection.updateOne(filter, updateDoc);
       res.json(result);
     })
+      //  Post Api Add Reviews
+      app.post("/review", async (req, res) => {
+        const product = req.body;
+        const result = await reviewCollection.insertOne(product)
+        res.json(result)
+      })
 
   }
   finally {
