@@ -135,6 +135,12 @@ async function run() {
         const result = await reviewCollection.insertOne(product)
         res.json(result)
       })
+     // Get Api Gell All Reviews
+     app.get("/review", async (req, res) => {
+      const cursor = reviewCollection.find({})
+      const result = await cursor.toArray();
+      res.send(result)
+    })
 
   }
   finally {
